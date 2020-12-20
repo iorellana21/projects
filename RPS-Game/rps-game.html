@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock Paper Scissors</title>
+    </head>
+
+    <body>
+
+        <h1>do the console!</h1>
+
+        <script type="text/javascript">
+
+            //array to choose selection
+            var rps = ["Rock", "Paper", "Scissors"];
+
+            //confirm if user wants to play
+            var playGame = confirm("Are you ready to play?!");
+
+            // keep tab on score
+            var totalWins = 4;
+            var tieTotal = 0;
+            var userWinTotal = 0;
+            var userLossTotal = 0;
+            var cpuWinTotal = 0;
+            var cpuLossTotal = 0;
+
+
+            //user decides to play
+            if (playGame === true) {
+
+                //random selection for CPU
+                var cpu = Math.floor(Math.random() * rps.length);
+                //making random selection into all lowercase
+                cpu = rps[cpu].toLowerCase();
+                //cheating to see CPU first random choice
+                console.log("1. CPU first random choice - " + cpu);
+
+
+                //play max 7 games
+                for (var i = 0; i < 50 && userWinTotal < 4 && cpuWinTotal < 4; i++) {
+
+                    //best out of 7 - 4 to win
+                    if ((userWinTotal !== totalWins) && (cpuWinTotal !== totalWins)) {
+                        //ask user to make a selection
+                        var userInput = prompt("Choose between Rock, Paper, Scissors");
+                        //making user selection into all lowercase
+                        userInput = userInput.toLowerCase();
+
+                        //show users first selection
+                        console.log("2. Users first selection - " + userInput);
+
+                        //verify if user chose rock paper or scissors - alert if false
+                        while (userInput !== rps[0].toLowerCase() && userInput !== rps[1].toLowerCase() && userInput !== rps[2].toLowerCase()) {
+                            alert("Please select either Rock, Paper or Scissors ONLY :)");
+                            userInput = prompt("Choose between Rock, Paper, Scissors por favor");
+                            //making user selection into all lowercase
+                            userInput = userInput.toLowerCase();
+
+                            //show users selection until correct selection is chosen and game can start
+                            console.log("3. Users other selection in While loop - " + userInput);
+                        }
+
+                        //show users correct selection
+                        console.log("4. User correctly chose - " + userInput);
+
+                        //comparing user choice and array options
+                        // console.log(userInput === rps[0].toLowerCase());
+                        // console.log(userInput === rps[1].toLowerCase());
+                        // console.log(userInput === rps[2].toLowerCase());
+
+                        //comparing user and cpu selections
+                        console.log(userInput === cpu);
+
+                        //show User Input vs CPU initial random selection
+                        console.log("User chose '" + userInput + "' & CPU chose '" + cpu + "'");
+
+                        //You Win
+                        if (
+                            (userInput === rps[0].toLowerCase() && cpu === rps[2].toLowerCase()) ||
+                            (userInput === rps[1].toLowerCase() && cpu === rps[0].toLowerCase()) ||
+                            (userInput === rps[2].toLowerCase() && cpu === rps[1].toLowerCase())
+                        ) {
+                            userWinTotal++;
+                            cpuLossTotal++;
+
+                            alert("You WIN! " + userInput + " beats " + cpu + ". Your Win Total is now at: " + userWinTotal);
+                            console.log("You WIN! " + userInput + " beats " + cpu + ". Your Win Total is now at: " + userWinTotal);
+                        }
+
+                        //CPU Wins
+                        else if (
+                            (cpu === rps[0].toLowerCase() && userInput === rps[2].toLowerCase()) ||
+                            (cpu === rps[1].toLowerCase() && userInput === rps[0].toLowerCase()) ||
+                            (cpu === rps[2].toLowerCase() && userInput === rps[1].toLowerCase())
+                        ) {
+                            cpuWinTotal++;
+                            userLossTotal++;
+
+                            alert("CPU WINS! " + cpu + " beats your " + userInput + ". Your Loss Total is now at: " + userLossTotal);
+                            console.log("CPU WINS! " + cpu + " beats your " + userInput + ". Your Loss Total is now at: " + userLossTotal);
+                        }
+
+                        else if (userInput === cpu) {
+                            
+                            tieTotal++;
+
+                            if (tieTotal === 1) {
+                                alert("It's a tie! CPU also chose " + userInput + ". This is the first tie of the game!");
+                                console.log("It's a tie! CPU also chose " + userInput + ". This is the first tie of the game!");
+
+                            }
+                            else {
+                                alert("It's a tie! CPU also chose " + userInput + ". There has now been " + tieTotal + " ties!");
+                                console.log("It's a tie! CPU also chose " + userInput + ". There has been " + tieTotal + " ties!");
+                            }
+                        }
+
+                        else {
+                            console.log("ERROR IN FOR LOOP");
+                        }
+                        
+                        //random selection for CPU
+                        var cpu = Math.floor(Math.random() * rps.length);
+                        cpu = rps[cpu].toLowerCase();
+                    }
+                    else {
+                    console.log("ERROR OUTSIDE FOR LOOP");
+                    }
+                }
+                if (userWinTotal === totalWins) {
+                    alert("WINNER WINNER! CHICKEN DINNER! YOU WON! Win Total: " + userWinTotal + "- Loss Total: " + userLossTotal + "- Number of Ties: " + tieTotal);
+                }
+                else if (cpuWinTotal === totalWins) {
+                    alert("Better luck next time tiger (open the console first for an easy win ;]). CPU Win Total: " + cpuWinTotal + "- Loss Total: " + cpuLossTotal + "- Number of ties: " + tieTotal);
+                }
+            }
+
+            //user decides not to play
+            else {
+                //random selection for CPU
+                var cpu = Math.floor(Math.random() * rps.length);
+                //making random selection into all lowercase
+                cpu = rps[cpu].toLowerCase();
+                
+                alert("wack");
+                console.log("Didnt want to play.. You couldve won.. CPU chose " + cpu + " (open the console first for an easy win ;])");
+                // //so much debugging - comparing array value and CPU selection
+                // console.log("comparing array value and CPU selection:");
+                // //console.log(rps[0].toLowerCase());
+                // console.log(cpu === rps[0].toLowerCase());
+                // console.log(rps[1].toLowerCase());
+                // console.log(cpu === rps[1].toLowerCase());
+                // console.log(rps[2].toLowerCase());
+                // console.log(cpu === rps[2].toLowerCase());
+            }
+
+        </script>
+
+    </body>
+
+</html>
